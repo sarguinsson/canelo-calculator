@@ -111,21 +111,6 @@ class CaneloCalculator {
             itemsList.style.transform = 'scale(1)';
         }, 200);
     }
-
-    // Get statistics
-    getStatistics() {
-        const stats = {
-            meat: 0,
-            fish: 0,
-            vegetable: 0
-        };
-
-        this.items.forEach(item => {
-            stats[item.type]++;
-        });
-
-        return stats;
-    }
 }
 
 // Initialize calculator when page loads
