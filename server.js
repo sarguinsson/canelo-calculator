@@ -25,9 +25,18 @@ const server = http.createServer((req, res) => {
     // Remove query string
     filePath = filePath.split('?')[0];
     
-    // Build the full file path
-    filePath = path.join(__dirname, filePath);
+    // Build and validate the full file path to prevent path traversal
+    const requestedPath = filePath;
+    const resolvedPath = path.resolve(__dirname, '.' + requestedPath);
 
+    // Ensure the resolved path is within the application directory
+    if (!resolvedPath.startsWith(__dirname + path.sep)) {
+        res.writeHead(403, { 'Content-Type': 'text/plain' });
+        res.end('403 Forbidden');
+        return;
+    }
+
+    filePath = resolvedPath;
     // Get the file extension
     const ext = path.extname(filePath).toLowerCase();
     const contentType = mimeTypes[ext] || 'application/octet-stream';
