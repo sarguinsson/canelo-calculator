@@ -49,7 +49,7 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed Azure deployment instructions.
 
 ```bash
 az login
-az account set --subscription 2fee139e-3968-4ef0-8b60-5b05842d6c1b
+az account set --subscription YOUR_SUBSCRIPTION_ID
 az webapp up --name canelo-calculator --resource-group canelo-calculator-rg --html
 ```
 
