@@ -28,9 +28,9 @@ jobs:
         with:
           name: static-app
           path: |
-            index.html
-            styles.css
-            script.js
+            *.html
+            *.css
+            *.js
             web.config
 
   deploy:
