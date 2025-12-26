@@ -13,7 +13,8 @@ A festive web application to calculate the caloric content of your Christmas can
 
 ## Live Demo
 
-The application is deployed on Azure App Service and can be accessed at your Azure deployment URL.
+The application is deployed on GitHub Pages and can be accessed at:
+**https://sarguinsson.github.io/canelo-calculator/**
 
 ## Local Development
 
@@ -31,35 +32,35 @@ start index.html # Windows
 xdg-open index.html # Linux
 ```
 
-### Option 2: Node.js Server (Production-like)
-Run the built-in Node.js server to simulate the Azure deployment:
+### Option 2: Simple HTTP Server (Production-like)
+For a production-like environment, use any simple HTTP server:
 
 ```bash
-# Install dependencies (none required, but npm start will work)
-npm start
+# Using Python
+python -m http.server 8080
+
+# Using Node.js (if you have http-server installed)
+npx http-server -p 8080
 
 # Access at http://localhost:8080
 ```
 
-## Deployment to Azure
+## Deployment to GitHub Pages
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed Azure deployment instructions.
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed GitHub Pages deployment instructions.
 
 ### Quick Deploy
 
-```bash
-az login
-az account set --subscription YOUR_SUBSCRIPTION_ID
-az webapp up --name canelo-calculator --resource-group canelo-calculator-rg --html
-```
+The site automatically deploys to GitHub Pages when you push to the `main` branch. Just ensure GitHub Pages is enabled in your repository settings (Settings > Pages > Source: GitHub Actions).
+
+Your site will be available at: `https://sarguinsson.github.io/canelo-calculator/`
 
 ## Technology Stack
 
 - Pure HTML5, CSS3, and Vanilla JavaScript for the frontend
-- Node.js HTTP server for Azure App Service deployment
 - CSS3 with animations
 - Vanilla JavaScript (no frameworks)
-- Azure App Service for hosting
+- GitHub Pages for hosting
 
 ## Project Structure
 
@@ -68,13 +69,10 @@ canelo-calculator/
 ├── index.html          # Main application page
 ├── styles.css          # Christmas-themed styling
 ├── script.js           # Calculator logic
-├── server.js           # Node.js server for Azure deployment
-├── package.json        # Node.js project configuration
-├── web.config          # Azure App Service IIS configuration
-├── DEPLOYMENT.md       # Deployment guide
+├── DEPLOYMENT.md       # GitHub Pages deployment guide
 └── .github/
     └── workflows/
-        └── azure-deploy.yml  # GitHub Actions workflow
+        └── github-pages.yml  # GitHub Actions workflow for deployment
 ```
 
 ## Usage

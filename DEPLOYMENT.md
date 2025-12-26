@@ -1,82 +1,81 @@
-# Azure Deployment Guide for Caneló Calculator
+# GitHub Pages Deployment Guide for Caneló Calculator
 
-## Prerequisites
-- Azure subscription ID
-- Azure CLI installed
+## Automatic Deployment (Recommended)
 
-## Quick Deployment Steps
+The site is automatically deployed to GitHub Pages when you push to the `main` branch.
 
-### Option 1: Using Azure CLI (Simplest)
+### Initial Setup
 
-1. **Login to Azure:**
+1. **Enable GitHub Pages in Repository Settings:**
+   - Go to your repository on GitHub
+   - Click on **Settings** > **Pages**
+   - Under **Source**, select **GitHub Actions**
+
+2. **Push to main branch:**
    ```bash
-   az login
-   az account set --subscription YOUR_SUBSCRIPTION_ID
+   git push origin main
    ```
 
-2. **Create Resource Group (if not exists):**
-   ```bash
-   az group create --name canelo-calculator-rg --location eastus
-   ```
+3. **That's it!** GitHub Actions will automatically build and deploy your site.
 
-3. **Create App Service Plan:**
-   ```bash
-   az appservice plan create --name canelo-calculator-plan --resource-group canelo-calculator-rg --sku F1 --is-linux
-   ```
+### Accessing Your Site
 
-4. **Create Web App:**
-   ```bash
-   az webapp create --name canelo-calculator --resource-group canelo-calculator-rg --plan canelo-calculator-plan --runtime "NODE:18-lts"
-   ```
+After deployment, your app will be available at:
+```
+https://sarguinsson.github.io/canelo-calculator/
+```
 
-5. **Deploy the application:**
-   ```bash
-   az webapp up --name canelo-calculator --resource-group canelo-calculator-rg --html
-   ```
+(Replace `sarguinsson` with your GitHub username if different)
 
-### Option 2: Using Azure Portal
+## Manual Deployment
 
-1. Go to [Azure Portal](https://portal.azure.com)
-2. Create a new Web App
-3. Select your Azure subscription
-4. Create or select a resource group
-5. Configure:
-   - Name: `canelo-calculator`
-   - Publish: `Code`
-   - Runtime stack: `HTML` or `Node.js`
-   - Region: Choose closest to you
-   - Pricing: `F1 (Free)` for testing
-6. Deploy using:
-   - FTP/WebDeploy
-   - GitHub Actions (workflow included)
-   - Local Git
-   - Azure DevOps
+You can also trigger a deployment manually:
 
-### Option 3: GitHub Actions (Automated)
-
-1. In Azure Portal, download the publish profile for your web app
-2. Add it as a secret in GitHub:
-   - Go to repository Settings > Secrets and variables > Actions
-   - Create new secret: `AZURE_WEBAPP_PUBLISH_PROFILE`
-   - Paste the publish profile content
-3. Push to main branch - automatic deployment will trigger
+1. Go to your repository on GitHub
+2. Click on **Actions** tab
+3. Select **Deploy to GitHub Pages** workflow
+4. Click **Run workflow** button
+5. Select the branch (usually `main`)
+6. Click **Run workflow**
 
 ## Files Included
 
 - `index.html` - Main application
 - `styles.css` - Christmas-themed styling
 - `script.js` - Calculator logic
-- `web.config` - IIS configuration for Azure
-- `.github/workflows/azure-deploy.yml` - GitHub Actions workflow
+- `.github/workflows/github-pages.yml` - GitHub Actions workflow for automatic deployment
 
-## Application URL
+## Deployment Workflow
 
-After deployment, your app will be available at:
+The GitHub Pages workflow (`.github/workflows/github-pages.yml`) automatically:
+1. Checks out your code
+2. Configures GitHub Pages
+3. Uploads the site as an artifact
+4. Deploys to GitHub Pages
+
+## Local Development
+
+No build process is required! Simply open `index.html` in your browser:
+
+```bash
+# Clone the repository
+git clone https://github.com/sarguinsson/canelo-calculator.git
+cd canelo-calculator
+
+# Open in browser
+open index.html  # macOS
+start index.html # Windows
+xdg-open index.html # Linux
 ```
-https://canelo-calculator.azurewebsites.net
-```
 
-(Replace `canelo-calculator` with your actual app name if different)
+## Benefits of GitHub Pages
+
+- ✅ **Free hosting** for public repositories
+- ✅ **Automatic HTTPS** with SSL certificate
+- ✅ **Fast CDN delivery** worldwide
+- ✅ **Zero configuration** for static sites
+- ✅ **Integrated with GitHub** workflow
+- ✅ **Automatic deployments** on push to main
 
 ## Features
 
