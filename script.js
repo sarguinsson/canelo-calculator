@@ -3,6 +3,7 @@
 class CaneloCalculator {
     constructor() {
         this.items = [];
+        this.nextId = 1; // Counter for unique IDs
         this.initializeEventListeners();
         this.updateDisplay();
     }
@@ -23,11 +24,20 @@ class CaneloCalculator {
         clearBtn.addEventListener('click', () => {
             this.clearAll();
         });
+
+        // Event delegation for remove buttons
+        const itemsList = document.getElementById('itemsList');
+        itemsList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-btn')) {
+                const id = parseInt(e.target.getAttribute('data-id'));
+                this.removeItem(id);
+            }
+        });
     }
 
     addItem(type, calories) {
         const item = {
-            id: Date.now(),
+            id: this.nextId++,
             type: type,
             calories: calories
         };
@@ -76,18 +86,49 @@ class CaneloCalculator {
             vegetable: 'Vegetable Canelons'
         };
 
-        itemsList.innerHTML = this.items.map(item => `
-            <div class="item-row ${item.type}" data-id="${item.id}">
-                <div class="item-info">
-                    <div class="item-icon">${icons[item.type]}</div>
-                    <div class="item-details">
-                        <span class="item-name">${names[item.type]}</span>
-                        <span class="item-calories">${item.calories} calories</span>
-                    </div>
-                </div>
-                <button class="remove-btn" onclick="calculator.removeItem(${item.id})">Remove</button>
-            </div>
-        `).join('');
+        // Clear the list
+        itemsList.innerHTML = '';
+
+        // Create DOM elements for each item
+        this.items.forEach(item => {
+            const itemRow = document.createElement('div');
+            itemRow.className = `item-row ${item.type}`;
+            itemRow.setAttribute('data-id', item.id);
+
+            const itemInfo = document.createElement('div');
+            itemInfo.className = 'item-info';
+
+            const itemIcon = document.createElement('div');
+            itemIcon.className = 'item-icon';
+            itemIcon.textContent = icons[item.type];
+
+            const itemDetails = document.createElement('div');
+            itemDetails.className = 'item-details';
+
+            const itemName = document.createElement('span');
+            itemName.className = 'item-name';
+            itemName.textContent = names[item.type];
+
+            const itemCalories = document.createElement('span');
+            itemCalories.className = 'item-calories';
+            itemCalories.textContent = `${item.calories} calories`;
+
+            itemDetails.appendChild(itemName);
+            itemDetails.appendChild(itemCalories);
+
+            itemInfo.appendChild(itemIcon);
+            itemInfo.appendChild(itemDetails);
+
+            const removeBtn = document.createElement('button');
+            removeBtn.className = 'remove-btn';
+            removeBtn.textContent = 'Remove';
+            removeBtn.setAttribute('data-id', item.id);
+
+            itemRow.appendChild(itemInfo);
+            itemRow.appendChild(removeBtn);
+
+            itemsList.appendChild(itemRow);
+        });
     }
 
     updateTotals() {

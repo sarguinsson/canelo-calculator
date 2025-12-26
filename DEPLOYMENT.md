@@ -1,7 +1,7 @@
 # Azure Deployment Guide for Caneló Calculator
 
 ## Prerequisites
-- Azure subscription: `2fee139e-3968-4ef0-8b60-5b05842d6c1b`
+- Azure subscription ID
 - Azure CLI installed
 
 ## Quick Deployment Steps
@@ -11,7 +11,7 @@
 1. **Login to Azure:**
    ```bash
    az login
-   az account set --subscription 2fee139e-3968-4ef0-8b60-5b05842d6c1b
+   az account set --subscription YOUR_SUBSCRIPTION_ID
    ```
 
 2. **Create Resource Group (if not exists):**
@@ -38,7 +38,7 @@
 
 1. Go to [Azure Portal](https://portal.azure.com)
 2. Create a new Web App
-3. Select the subscription: `2fee139e-3968-4ef0-8b60-5b05842d6c1b`
+3. Select your Azure subscription
 4. Create or select a resource group
 5. Configure:
    - Name: `canelo-calculator`
