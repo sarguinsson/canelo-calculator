@@ -38,14 +38,19 @@ const server = http.createServer((req, res) => {
             // File doesn't exist, serve index.html for client-side routing
             if (ext === '' || ext === '.html') {
                 filePath = path.join(__dirname, 'index.html');
+                readAndServeFile(filePath, contentType);
             } else {
                 res.writeHead(404, { 'Content-Type': 'text/plain' });
                 res.end('404 Not Found');
-                return;
             }
+        } else {
+            // File exists, serve it
+            readAndServeFile(filePath, contentType);
         }
+    });
 
-        // Read and serve the file
+    // Helper function to read and serve file
+    function readAndServeFile(filePath, contentType) {
         fs.readFile(filePath, (error, content) => {
             if (error) {
                 if (error.code === 'ENOENT') {
@@ -60,7 +65,7 @@ const server = http.createServer((req, res) => {
                 res.end(content, 'utf-8');
             }
         });
-    });
+    }
 });
 
 server.listen(PORT, () => {

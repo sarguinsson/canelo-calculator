@@ -40,7 +40,6 @@ npm start
 
 # Access at http://localhost:8080
 ```
-```
 
 ## Deployment to Azure
 
