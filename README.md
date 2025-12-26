@@ -17,6 +17,7 @@ The application is deployed on Azure App Service and can be accessed at your Azu
 
 ## Local Development
 
+### Option 1: Direct Browser Access (Development)
 Simply open `index.html` in your web browser - no build process required!
 
 ```bash
@@ -28,6 +29,17 @@ cd canelo-calculator
 open index.html  # macOS
 start index.html # Windows
 xdg-open index.html # Linux
+```
+
+### Option 2: Node.js Server (Production-like)
+Run the built-in Node.js server to simulate the Azure deployment:
+
+```bash
+# Install dependencies (none required, but npm start will work)
+npm start
+
+# Access at http://localhost:8080
+```
 ```
 
 ## Deployment to Azure
@@ -44,7 +56,8 @@ az webapp up --name canelo-calculator --resource-group canelo-calculator-rg --ht
 
 ## Technology Stack
 
-- Pure HTML5
+- Pure HTML5, CSS3, and Vanilla JavaScript for the frontend
+- Node.js HTTP server for Azure App Service deployment
 - CSS3 with animations
 - Vanilla JavaScript (no frameworks)
 - Azure App Service for hosting
@@ -56,7 +69,9 @@ canelo-calculator/
 ├── index.html          # Main application page
 ├── styles.css          # Christmas-themed styling
 ├── script.js           # Calculator logic
-├── web.config          # Azure App Service configuration
+├── server.js           # Node.js server for Azure deployment
+├── package.json        # Node.js project configuration
+├── web.config          # Azure App Service IIS configuration
 ├── DEPLOYMENT.md       # Deployment guide
 └── .github/
     └── workflows/
