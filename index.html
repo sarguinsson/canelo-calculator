@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Christmas Caneló Calculator 🎄</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>🎄 Christmas Caneló Calculator 🍝</h1>
+            <p class="subtitle">Calculate your holiday cannelloni calories!</p>
+        </header>
+
+        <div class="calculator-wrapper">
+            <div class="add-section">
+                <h2>Add Canelons</h2>
+                <div class="canelon-types">
+                    <div class="canelon-card" data-type="meat">
+                        <div class="card-icon">🥩</div>
+                        <h3>Meat Canelons</h3>
+                        <p class="calories">320 cal/unit</p>
+                        <p class="description">Traditional beef and pork filling</p>
+                        <button class="add-btn" data-type="meat" data-calories="320">Add</button>
+                    </div>
+
+                    <div class="canelon-card" data-type="fish">
+                        <div class="card-icon">🐟</div>
+                        <h3>Fish Canelons</h3>
+                        <p class="calories">250 cal/unit</p>
+                        <p class="description">Fresh seafood and white fish</p>
+                        <button class="add-btn" data-type="fish" data-calories="250">Add</button>
+                    </div>
+
+                    <div class="canelon-card" data-type="vegetable">
+                        <div class="card-icon">🥬</div>
+                        <h3>Vegetable Canelons</h3>
+                        <p class="calories">180 cal/unit</p>
+                        <p class="description">Spinach, ricotta, and mushrooms</p>
+                        <button class="add-btn" data-type="vegetable" data-calories="180">Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-section">
+                <h2>Your Plate 🍽️</h2>
+                <div class="items-list" id="itemsList">
+                    <p class="empty-message">No canelons added yet. Start adding some delicious ones!</p>
+                </div>
+
+                <div class="totals">
+                    <div class="total-row">
+                        <span>Total Canelons:</span>
+                        <span id="totalCount" class="total-value">0</span>
+                    </div>
+                    <div class="total-row total-calories-row">
+                        <span>Total Calories:</span>
+                        <span id="totalCalories" class="total-value">0 cal</span>
+                    </div>
+                </div>
+
+                <button class="clear-btn" id="clearBtn">Clear All</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>🎅 Merry Christmas & Bon Appetit! 🎄</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
